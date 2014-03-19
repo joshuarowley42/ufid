@@ -1,0 +1,47 @@
+body{
+	background-image: url("http://files.e3d-online.com/paper-graph.jpg");
+}
+
+.header {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;
+	height: 90px;
+	margin-top: 10px;
+	padding-bottom: 4px;
+	position: relative;
+	z-index: 99;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-khtml-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+	border-top: 1px solid #DBDEE1;
+	border-right: 1px solid #DBDEE1;
+	border-left: 1px solid #DBDEE1;
+}
+.header img{
+	height: 70px;
+}
+.content {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;
+	height: 90px;
+	margin-top: 10px;
+	padding-bottom: 4px;
+	position: relative;
+	z-index: 99;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-khtml-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+	border-top: 1px solid #DBDEE1;
+	border-right: 1px solid #DBDEE1;
+	border-left: 1px solid #DBDEE1;
+}
+.clearboth{
+	clear:both;
+}
+

@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<h1 style="text-align:center">Filament Profiles</h1>
+
+	<div style="background-color:white; padding:5px; margin-bottom:10px; border-radius:6px;">
+		<h1>E3D Filament Databsae</h1>
+		<p>This database is a collection of information provided by the RepRap community to help
+		guide their fellow printing crusaders start off on a good foot with the correct print settings
+		for their filament.</p>
+		<p>Through the support of the UFID project we are able to provide you with config files which can 
+		be downloaded to get you up and running with your new filament in no time. </p>
+		<p>If you want to contribute to the community, you can enter print settings you have found to be
+		successfull for you.</p>
+		<p>As a manufacturer, plesae take the time to register and manage your filament profiles. You will
+		be able to upload your filaments, enter the configs and approve configs you see fit. Recieve notifications 
+		when filament you distribute is uploaded. </p>
+	</div>
+
+<table style="width:100%; border-size:2px; text-align:center;" border=1>
+	<tr>
+		<th>Filament Profile ID</th>
+		<th>Manufacturer ID</th>
+		<th>Manufacturer's Part No.</th>
+		<th>Product Name</th>
+		<th>Date Added</th>
+		<th>Date Modified</th>
+	</tr>
+	{% for Filament in FilamentProfiles %}
+	<tr>
+		<td><a href="/Filament/{{ Filament["profile_id"] }}">{{ Filament["profile_id"] }}</a></td>
+		<td>{{ Filament["manufacturer_id"] }}</td>
+		<td><a href="/Filament/{{ Filament["profile_id"] }}">{{ Filament["manufacturer_pn"] }}</a></td>
+		<td><a href="/Filament/{{ Filament["profile_id"] }}">{{ Filament["product_name"] }}</a></td>
+		<td>{{ Filament["date_added"] }}</td>
+		<td>{{ Filament["date_modified"] }}</td>
+	</tr>
+	{% endfor %}
+
+
+</table>
+
+<form action="/NewProfile/" method="POST">
+<table>
+<tr>
+	<th colspan=2>Enter Filament Data</th>
+</tr>
+{% for Column in Columns %}
+<tr>
+	<td>{{ Column.description }}</td>
+	<td><input type="text" name="{{ Column.column_name }}"></td>
+</tr>
+{% endfor %}
+<tr>
+	<td colspan=2><input type="submit"></td>
+</tr>
+</table>
+</form>
+<a href="/AddNew/">Add New</a>
+
+</html>
+
+
+
+
+
+
+
+
+
+<div class="row">
+		<div class="span4">
+			<h2>Filament Search</h2>
+			<form action="/Search/" method="GET">
+			<table>
+			<tr>
+				<td>Manufacturer</td>
+				<td><select name="ManufacturerID" style="width:190px;">
+					<option value="0" selected>Manufacturer</option>
+					<option value="1">E3D-Online (ID: 1)</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Filament</td>
+				<td><select name="FilamentID" style="width:190px;">
+					<option value="0" selected>Manufacturer</option>
+					<option value="1">E3D-Everyday</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="Name" style="width:190px;"></td>
+			</tr>
+			<tr>
+				<td colspan=2 style="text-align:center"><input type="submit" value="Search"></td>
+			</tr>
+			</table>
+			</form>
+		</div>
+
+		<div class="span4">
+			<h3>Manufacturer Login</h3>
+			<p>
+				<form action="/Manufacturer/Login/" method="POST">
+					<table>
+						<tr><td>Username:</td><td><input type="text" name="Username" style="width:90px;"></td></tr>
+						<tr><td>Password:</td><td><input type="password" name="Password" style="width:90px;"></td></tr>
+						<tr><td></td><td><input type="submit" value="Log In"></td></tr>
+					</table>
+				</form>
+			</p>
+			<p><a href="/Manufacturer/Add/">Manufacturer Register</a></p>
+		</div>
+
+		<div class="span4">
+			<h3>List of Filament Manufacturers in Database</h3>
+			<table style="width:40%; margin-left:auto; margin-right:auto;">
+				<tr><th>Manufacturer</th><th>No. Entries</th></tr>
+				{% for Manufacturer in Manufacturers %}
+				<tr><td><a href="/Manufacturer/{{Manufacturer[0]}}">{{Manufacturer[1]}}</td><td>{{Manufacturer[2]}}</td></tr>
+				{% endfor %}
+
+			</table>
+		</div>
+
+	</div>

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}E3D Filament Database - New Filament{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="jumbotron">
+		<h1>New Filament</h1>
+	</div>
+	
+   
+	<div class="row">
+		<div class="col-sm-8">
+		<form class="form-horizontal" role="form" method="POST">
+			<div class="form-group">
+				<label for="MID" class="col-sm-4 control-label">Filament Manufacturer</label>
+				<div class="col-sm-8">
+				<select class="form-control" id="MID" name="MID">
+				<option value="" selected>Select Manufacturer</option>
+				{% for Manufacturer in Manufacturers %}
+				<option value="{{Manufacturer.ManufacturerID}}">{{Manufacturer.Name}}</option>
+				{% endfor %}
+				<option value="0" selected>Other - Please Enter</option>
+				</select>
+				<input type="text" class="form-control" name="ManufacturerName" placeholder="Manufacturer Name" id="ManufacturerName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="MPN" class="col-sm-4 control-label">Manufacturers Part No.</label>
+				<div class="col-sm-8">
+				<input type="text" class="form-control" name="MPN" placeholder="MPN" id="MPN">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="Name" class="col-sm-4 control-label">Filament Name</label>
+				<div class="col-sm-8">
+				<input type="text" class="form-control" name="Name" placeholder="Name" id="Name">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="Diameter" class="col-sm-4 control-label">Diameter (mm)</label>
+				<div class="col-sm-8">
+				<input type="text" class="form-control" name="Diameter" placeholder="Diameter" id="Diameter">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Tolerance" class="col-sm-4 control-label">Tolerance (+/-mm)</label>
+				<div class="col-sm-8">
+				<input type="text" class="form-control" name="Tolerance" placeholder="Tolerance" id="Tolerance">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Volume" class="col-sm-4 control-label">Volume (cm<sup>2</sup>)</label>
+				<div class="col-sm-8">
+				<input type="text" class="form-control" name="Volume" placeholder="Volume" id="Volume">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Color" class="col-sm-4 control-label">Colour (hex)</label>
+				<div class="col-sm-8">
+				<input type="text" class="form-control" name="Color" placeholder="Color" id="Color">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-sm-12">
+				<button type="submit" class="btn btn-default">Add to Database</button>
+				</div>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
