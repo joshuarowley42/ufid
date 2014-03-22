@@ -20,7 +20,7 @@
 			<div class="row">
 				<div class="col-sm-6">Manufacturer
 				</div>
-				<div class="col-sm-6"><a href="/Manufacturer/{{ Filament.FilamentID }}">{{ ManufacturerName }}</a>
+				<div class="col-sm-6"><a href="/Manufacturer/{{ Filament.ManufacturerID }}">{{ ManufacturerName }}</a>
 				</div>
 			</div>
 			<div class="row">
@@ -50,6 +50,8 @@
 			<table class="table table-striped">
 			<tr>
 				<th>Profile ID</th>
+				<th>Profile Description</th>
+				<th>Profile Score</th>
 				<th>Print Temp</th>
 				<th>Maximum Temp</th>
 				<th>Minimum Temp</th>
@@ -57,11 +59,14 @@
 				<th>Chamber Temp</th>
 				<th>Glass Transition Temp</th>
 				<th>Date Added</th>				
-				<th>Date Modified</th>				
+				<th>Date Modified</th>	
+				<th>Contributor</th>				
 			</tr>
 			{% for Profile in Profiles %}
 			<tr>
-				<td>{{ Profile.FilamentID }}</td>
+				<td><a href="/Filament/Profile/{{ Profile.ProfileID }}">{{ Profile.ProfileID }}</a></td>
+				<td>{{ Profile.ProfileDescription }}</td>
+				<td>{{ Profile.ProfileScore }}</td>
 				<td>{{ Profile.TPrint }}</td>
 				<td>{{ Profile.TMax }}</td>
 				<td>{{ Profile.TMin }}</td>
@@ -70,6 +75,7 @@
 				<td>{{ Profile.Tg }}</td>
 				<td>{{ Profile.DateAdded }}</td>
 				<td>{{ Profile.DateModified }}</td>
+				<td>{{ Profile.Contributor }}</td>
 			</tr>
 			{% endfor %}			
 			</table>

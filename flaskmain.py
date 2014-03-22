@@ -5,6 +5,9 @@ import MySQLdb
 import MySQLdb.cursors
 app = Flask(__name__)
 import Filament
+import logging
+from ufid import UFID
+logging.basicConfig(filename='log.txt', level=logging.DEBUG)
 
 @app.before_request
 def before_request():
@@ -70,7 +73,8 @@ def Manufacturer(ManufacturerID):
 			Filaments.DateModified as DateModified, \
 			ProfileCounts.ProfileCount AS ProfileCount \
 			FROM Filaments \
-			JOIN ProfileCounts ON Filaments.FilamentID=ProfileCounts.FilamentID;"
+			LEFT JOIN ProfileCounts ON Filaments.FilamentID=ProfileCounts.FilamentID\
+			WHERE Filaments.ManufacturerID = "+str(int(ManufacturerID))+";"
 	print Query				
 	g.DBCursor.execute(Query)
 	Filaments = g.DBCursor.fetchall()
@@ -144,6 +148,25 @@ def ConfirmAddFilament():
 
 	return render_template("ConfirmAddFilament.html", FilamentID=FilamentID)
 
+@app.route("/Filament/Profile/<ProfileID>")
+def ViewProfile(ProfileID):
+	g.DBCursor.execute("SELECT FilamentProfiles.*, \
+				Filaments.*\
+				FROM FilamentProfiles\
+				JOIN Filaments ON FilamentProfiles.FilamentID = Filaments.FilamentID\
+				WHERE ProfileID="+str(int(ProfileID))+";")
+	Profile = g.DBCursor.fetchone()
+	print Profile
+	UFIDObject = UFID(Diameter = Profile["Diameter"],
+		Tolerance = Profile["Tolerance"],
+		Tg = Profile["Tg"],
+		TPrint = Profile["TPrint"],
+		TMin = Profile["TMin"],
+		TMax = Profile["TMax"],
+		TChamber = Profile["TChamber"],
+		TBed = Profile["TBed"],
+		Color = Profile["Color"])
+	return "<a href='"+UFIDObject.GetUFIDUrl()+"'>"+UFIDObject.GetUFIDUrl()+"</a>"
 
 
 
