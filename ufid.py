@@ -1,6 +1,9 @@
 import logging
 
 class UFID:
+
+	'''Generate URLs compliant with the UFID standard - see UFIDS.org for more information.'''
+
 	def __init__(self, Version = 1,
 		Flags = 0,
 		Diameter = 0,
@@ -17,11 +20,19 @@ class UFID:
 		MixtureID = 0,
 		Volume = 0,
 		GTIN = 0):
+		
+		''' 	All lengths are in units of mm
+			All tempreatures are in units of deg C
+			Colour is in hex without leading #
+			Volume is in units of mm^3
+		'''
 
 		self.UFIDUrlRoot = "http://ufids.org/#"
 
 		self.DataStructure = []
 
+		# The order of these items specifies the order that they are presented in the final hex string.
+		#  - InitVariable, No. Bits, Compression/Mapping Function
 		self.DataStructure.append(["Version", 	8, 	lambda x: int(x)])
 		self.DataStructure.append(["Flags", 	8, 	lambda x: int(x)])
 		self.DataStructure.append(["Diameter", 	9, 	lambda x: int((x-x%0.01)*100)])
