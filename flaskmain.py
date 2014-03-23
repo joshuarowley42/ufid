@@ -159,8 +159,8 @@ def ConfirmAddFilament(ManufacturerID):
 	FilamentID = g.DBCursor.fetchone()["Last"]
 	return FilamentPage(FilamentID)
 
-@app.route("/Filament/Profile/<ProfileID>")
-def ViewProfile(ProfileID):
+
+def GetUFIDUrl(ProfileID):
 	g.DBCursor.execute("SELECT FilamentProfiles.*, \
 				Filaments.*\
 				FROM FilamentProfiles\

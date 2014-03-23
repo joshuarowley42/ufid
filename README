@@ -1,4 +1,10 @@
 -E3D-UFID
 -========
 -
--E3D implementation of UFID for marking filament
+A database for storing filament manufactuers, filaments and printing profiles. 
+
+When launched the service will be maintained by manufacturers and the community providing a centralised location
+to store and search filaments and print settings. 
+
+Settings can be downloaded as slicer configuration files through the support of the UFID project - see UFID.org 
+for more information. 
