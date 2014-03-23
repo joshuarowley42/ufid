@@ -63,7 +63,7 @@ class UFID:
 
 	def IntToBin(self, Int, Length=8):
 		Bin = str(bin(Int))[2:]
-		if len(Bin)>Length:
+		if len(Bin)>Length or Int<0:
 			logging.warning("[fixme::] Value out of range - defaulting to 0")
 			return "0"*Length
 		Bin = "0"*(Length-len(Bin))+Bin 	# Pad with 0's

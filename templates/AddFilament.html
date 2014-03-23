@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}E3D Filament Database - New Filament{% endblock %}
 {% block content %}
+
+</script>
 <div class="container">
 	<div class="jumbotron">
 		<h1>New Filament</h1>
@@ -13,15 +15,13 @@
 			<div class="form-group">
 				<label for="MID" class="col-sm-4 control-label">Filament Manufacturer</label>
 				<div class="col-sm-8">
-				<select class="form-control" id="MID" name="MID">
-				<option value="" selected>Select Manufacturer</option>
-				{% for Manufacturer in Manufacturers %}
-				<option value="{{Manufacturer.ManufacturerID}}">{{Manufacturer.Name}}</option>
-				{% endfor %}
-				<option value="0" selected>Other - Please Enter</option>
+				<select class="form-control" id="MID" name="MID" data-live-search="true">
+					<option value="0" {% if ManufacturerID==0 %}selected{% endif %}>Select Manufacturer</option>
+					{% for Manufacturer in Manufacturers %}
+					<option value="{{Manufacturer.ManufacturerID}}" {% if ManufacturerID==Manufacturer.ManufacturerID %}selected{% endif %}>{{Manufacturer.Name}}</option>
+					{% endfor %}
 				</select>
-				<input type="text" class="form-control" name="ManufacturerName" placeholder="Manufacturer Name" id="ManufacturerName">
-				</div>
+ 				</div>
 			</div>
 			<div class="form-group">
 				<label for="MPN" class="col-sm-4 control-label">Manufacturers Part No.</label>
@@ -58,7 +58,7 @@
 			<div class="form-group">
 				<label for="Color" class="col-sm-4 control-label">Colour (hex)</label>
 				<div class="col-sm-8">
-				<input type="text" class="form-control" name="Color" placeholder="Color" id="Color">
+				<input type="text" class="form-control" name="Color" placeholder="e.g. For Blue: 0000FF" id="Color">
 				</div>
 			</div>
 

@@ -12,7 +12,7 @@
 			<h3>Filaments</h3>
 			<table class="table table-striped">
 			<tr>
-				<th>Filament ID</th><th>Name</th><th>Diameter</th><th>MPN</th><th>Submitted Profiles</th>
+				<th>Filament ID</th><th>Name</th><th>Diameter</th><th>MPN</th><th>Colour</th><th>Submitted Printing Profiles</th>
 			</tr>
 			{% for Filament in Filaments %}
 			<tr>
@@ -20,9 +20,14 @@
 				<td><a href="/Filament/{{ Filament.FilamentID }}">{{ Filament.Name }}</a></td>
 				<td>{{ Filament.Diameter }}</td>
 				<td>{{ Filament.MPN }}</td>
+				<td style="color:#{{ Filament.Color }}">#{{ Filament.Color }}</td>
 				<td>{{ Filament.ProfileCount }}</td>
 			</tr>
 			{% endfor %}
+			<tr>
+				<td colspan="10" style="text-align:right">
+				<a href="/Filament/Add/{{ Manufacturer.ManufacturerID }}" class="btn btn-primary active" role="button">Add New</a></td>
+			</tr>
 			</table>
 		</div>
 	</div>

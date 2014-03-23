@@ -8,52 +8,34 @@
 	
    
 	<div class="row">
-		<div class="col-sm-4">
-			<form action="/Search/" method="GET">
+
+		<div class="col-sm-8">
           		<ul class="list-group">
-				<li class="list-group-item active">Filament Search</li>
-            			<li class="list-group-item">Manufacturer:
-					<select name="ManufacturerID" style="width:60%; float:right;">
-					<option value="0" selected>Select Manufacturer</option>
-					{% for Manufacturer in Manufacturers %}
-					<option value="{{Manufacturer.ManufacturerID}}">{{Manufacturer.Name}} ({{Manufacturer.Count}} Filaments)</option>
-					{% endfor %}
-					</select>
+				<li class="list-group-item active">Manufacturers in Database</li>
+				{% for Manufacturer in Manufacturers %}
+            			<li class="list-group-item"><a href="/Manufacturer/{{Manufacturer.ManufacturerID}}">{{Manufacturer.Name}} ({{Manufacturer.Count}} Filaments)</a></li>
+				{% endfor %}
+				<li class="list-group-item">
+					<input type="text" class="form-control" placeholder="Manufacturer Name" id="Manufactuer" style="width:80%; float: left;">
+					<button type="button" class="btn btn-primary" style="width:18%; float:right;">Add</button>
+					<div style="clear:both"></div>
 				</li>
-            			<li class="list-group-item">Filament:
-					<select name="ManufacturerID" style="width:60%; float:right;">
-					<option value="0" selected>Select Filament</option>
-					</select>
-				</li>
-            			<li class="list-group-item">Name:
-					<input type="text" name="Name" style="width:60%; float:right;">
-				</li>
-            			<li class="list-group-item"><input type="submit" value="Search"></li>
           		</ul>
-			</form>
 		</div>
 
 		<div class="col-sm-4">
 			<form action="/Manufacturer/Login/" method="POST">
           		<ul class="list-group">
 				<li class="list-group-item active">Manufacturer Login</li>
-            			<li class="list-group-item">Username:<input type="text" name="Username" style="width:70%; float:right;"></li>
-            			<li class="list-group-item">Password:<input type="password" name="Password" style="width:70%; float:right;"></li>
-            			<li class="list-group-item"><input type="submit" value="Log In"></li>
+            			<li class="list-group-item"><input type="text" class="form-control" placeholder="Username" name="Username" style="width:100%;"></li>
+            			<li class="list-group-item"><input type="password" class="form-control" placeholder="Password" name="Password" style="width:100%;"></li>
+            			<li class="list-group-item"><input type="submit" class="btn btn-primary" value="Log In" style="float:right;"><div style="clear:both"></div></li>
             			<li class="list-group-item"><a href="/Manufacturer/Register/">Manufacturer Registration</a></li>
           		</ul>
 			</form>
 		</div>
 
-		<div class="col-sm-4">
-          		<ul class="list-group">
-				<li class="list-group-item active">Manufacturers in Database</li>
-				{% for Manufacturer in Manufacturers %}
-            			<li class="list-group-item"><a href="/Manufacturer/{{Manufacturer.ManufacturerID}}">{{Manufacturer.Name}} ({{Manufacturer.Count}} Filaments)</li>
-				{% endfor %}
-          		</ul>
-			</table>
-		</div>
+
 
 	</div>
 </div>
